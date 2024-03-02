@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="tab" id="mainscreen">
+        <div class="row">
+            <div class="main button">Learn</div>
+            <div class="main button">Vocab</div>
+        </div>
+        <div class="row">
+            <div class="main button">Practice</div>
+            <div class="main button">Settings</div>
+        </div>
+    </div>
+    <div class="main tab" id="lessonscreen">
+        <div class="tomain exit button"></div>
+        <div class="header" style="margin: 5px auto 0px auto">Learn</div>
+        <div id="wordgrid"></div>
+        <div class="lesson scroll button" style="left:2%"></div>
+        <div class="lesson scroll button" style="right:2%"></div>
+    </div>
+    <div class="main tab" id="vocabscreen">
+        <div class="header">Vocab</div>
+        <div class="tomain exit button"></div>
+        <div class="vocab scroll button" style="left:2%"></div>
+        <div class="vocab scroll button" style="right:2%"></div>
+        <div id="vocabcontainer">
+            <div class="vocabgroup">
+                <div class="header">New</div>
+                <div class="vocablist"></div>
+            </div>
+            <div class="vocabgroup">
+                <div class="header">Familiar</div>
+                <div class="vocablist"></div>
+            </div>
+            <div class="vocabgroup">
+                <div class="header">Competent</div>
+                <div class="vocablist"></div>
+            </div>
+            <div class="vocabgroup">
+                <div class="header">Advanced</div>
+                <div class="vocablist"></div>
+            </div>
+        </div>
+    </div>
+    <div class="main tab" id="testscreen">
+        <div class="tomain exit button"></div>
+    </div>
+</body>
+<script src="script.js"></script>
+<style>
+    :root {
+        --background: #f3f3f3;
+        --lightpurple: #8e7cc3;
+        --darkpurple: #674ea7;
+        --lighterpurple: #a190d5;
+        --darkishpurple: #7860b4;
+    }
+
+    body {
+        width: 400px;
+        height: 400px;
+    }
+
+    .tab {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #f3f3f3;
+        justify-content: center;
+        align-items: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .row {
+        display: flex;
+        width: 100%;
+        height: 50%;
+    }
+
+    .button {
+        display: inline;
+        margin: auto;
+        width: 43%;
+        height: 90%;
+        background-color: var(--lightpurple);
+        border-radius: 8px;
+        border: var(--darkpurple) 3px solid;
+        transition: width 0.5s, height 0.5s, background-color 0.5s;
+    }
+
+    .button:hover {
+        width: 45%;
+        height: 95%;
+        background-color: var(--lighterpurple);
+        transition: width 0.5s, height 0.5s, background-color 0.5s;
+    }
+
+    .button:active {
+        width: 42%;
+        height: 89%;
+        background-color: var(--darkishpurple);
+        transition: width 0.5s, height 0.5s, background-color 0.5s;
+    }
+
+    .exit {
+        position: fixed;
+        top: 3px;
+        left: 3px;
+        width: 15px;
+        height: 15px;
+        border-radius: 2px;
+        border-width: 2px;
+    }
+
+    .exit:hover {
+        width: 16px;
+        height: 16px;
+    }
+
+    .exit:active {
+        width: 14px;
+        height: 14px;
+    }
+
+    #lessonscreen,
+    #vocabscreen,
+    #testscreen {
+        display: none;
+    }
+
+    #wordgrid {
+        margin: 15px auto 0px auto;
+        display: grid;
+        background-color: var(--lighterpurple);
+        width: 89%;
+        height: 85%;
+        border: var(--darkishpurple) 3px solid;
+        border-radius: 10px;
+        gap: 5px;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+    }
+
+    #vocabcontainer {
+        width: 96%;
+        height: 89%;
+        background-color: var(--lightpurple);
+        margin: 10px auto;
+        border: var(--darkpurple) 2px solid;
+        border-radius: 5px;
+    }
+
+    .wordcell {
+        width: 90%;
+        height: 90%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .wordcell:hover {
+        width: 95%;
+        height: 95%;
+    }
+
+    .wordcell:active {
+        width: 88%;
+        height: 88%;
+    }
+
+    .scroll {
+        width: 5%;
+        position: fixed;
+        height: 5%;
+        top: 50%;
+        bottom: 50%;
+    }
+
+    .scroll:hover {
+        width: 6%;
+        height: 6%;
+    }
+
+    .scroll:active {
+        width: 5%;
+        height: 5%;
+    }
+
+    .vocabgroup {
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    .vocablist {
+        margin: auto;
+        width: 95%;
+        height: 90%;
+        display: inline-block;
+    }
+
+    .vocabword {
+        background-color: var(--lighterpurple);
+        display: inline;
+        padding: 2px;
+        border: var(--darkpurple) 2px solid;
+        margin: 2px;
+    }
+
+    .header {
+        margin: 5px auto 0px auto;
+        font-size: 15pt;
+        text-align: center;
+    }
+</style>
+
+</html>

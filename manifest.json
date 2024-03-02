@@ -1,0 +1,15 @@
+{
+    "manifest_version": 3,
+    "name": "ESL Extension",
+    "description": "ESL Helper",
+    "version": "1.0",
+    "action": {
+        "default_popup": "main.html",
+        "default_icon": "icon.png"
+    },
+    "content_scripts": [],
+    "background": {},
+    "permissions": [
+        "storage"
+    ]
+}
