@@ -10,11 +10,15 @@ for (let i = 0; i < 3; i++) {
     });
 }
 
-const words = ["lmao", "lmfao", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf", "dfsf"];
+const words = ["hello", "dog", "cat", "lovely"];
 let page = 0;
 const max_scroll = Math.floor((words.length - 1) / 16);
 const wordgrid = document.getElementById("wordgrid");
 
+
+const lessontemplate = document.getElementsByClassName("lessontemplate")[0];
+const definitiontemplate = document.getElementsByClassName("definitiontemplate")[0];
+let activeLessonPage = 0;
 
 function updateWordPage() {
     wordgrid.innerHTML = '';
@@ -23,6 +27,54 @@ function updateWordPage() {
         child.classList = "wordcell button";
         child.innerText = words[i];
         wordgrid.appendChild(child);
+        child.addEventListener("click", () => {
+            fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + words[i]).then((result) => result.json())
+                .then((json) => {
+                    json = json[0];
+                    let clone = lessontemplate.cloneNode(true);
+                    clone.style.display = "initial";
+                    clone.getElementsByClassName("lessonword")[0].innerText = words[i];
+                    for (let meaning of json["meanings"]) {
+                        let def = definitiontemplate.cloneNode(true);
+                        def.style.display = "";
+                        def.getElementsByClassName("header")[0].innerText = meaning["partOfSpeech"];
+                        let defbox = def.getElementsByClassName("definitions")[0];
+                        for (let definition of meaning["definitions"]) {
+                            defbox.innerText += definition["definition"] + "\nex: " + definition["example"] + "\n\n";
+                        }
+                        clone.appendChild(def);
+                    }
+                    let pages = clone.getElementsByClassName("lessonpage");
+                    let maxPage = json["meanings"].length;
+                    activeLessonPage = 0;
+                    document.body.appendChild(clone);
+                    clone.getElementsByClassName("exit button")[0].addEventListener("click", () => {
+                        clone.remove();
+                    });
+                    function updatePages() {
+                        for (let i = 0; i <= maxPage; i++) {
+                            console.log(i);
+                            console.log(pages[i]);
+                            if (i < activeLessonPage) {
+                                pages[i].style.left = "-100%";
+                            } else if (i > activeLessonPage) {
+                                pages[i].style.left = "100%";
+                            } else {
+                                pages[i].style.left = "0%";
+                            }
+                        }
+                    }
+                    updatePages(0);
+                    clone.getElementsByClassName("scroll button")[0].addEventListener("click", () => {
+                        activeLessonPage = Math.max(0, activeLessonPage - 1);
+                        updatePages();
+                    });
+                    clone.getElementsByClassName("scroll button")[1].addEventListener("click", () => {
+                        activeLessonPage = Math.min(maxPage, activeLessonPage + 1);
+                        updatePages();
+                    });
+                });
+        });
     }
 }
 updateWordPage(0);
