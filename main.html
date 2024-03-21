@@ -46,10 +46,25 @@
                 <div class="header">Advanced</div>
                 <div class="vocablist"></div>
             </div>
+            <div class="vocabgroup">
+                <div class="header">Retired</div>
+                <div class="vocablist"></div>
+            </div>
         </div>
     </div>
     <div class="main tab" id="testscreen">
+        <div id="question"></div>
+        <div id="choicesbox">
+            <div class="question button"></div>
+            <div class="question button"></div>
+            <div class="question button"></div>
+            <div class="question button"></div>
+        </div>
         <div class="tomain exit button"></div>
+    </div>
+    <div class="main tab" id="settingsscreen">
+        <div class="tomain exit button"></div>
+        <div class="button" id="reset">RESET</div>
     </div>
     <div class="lessontemplate activelesson tab" style="display:none">
         <div class="exit button"></div>
@@ -57,6 +72,9 @@
         <div class="lesson scroll button" style="right:2%"></div>
         <div class="lessonpage">
             <h1 class="lessonword" style="margin:auto"></h1>
+        </div>
+        <div class="lessonpage" style="display:flex">
+            <div class="finish button" style="text-align: center;">Finish Lesson</div>
         </div>
     </div>
     <div class="definitiontemplate lessonpage" style="display:none">
@@ -145,9 +163,19 @@
         height: 14px;
     }
 
-    #lessonscreen,
-    #vocabscreen,
-    #testscreen {
+    .question {
+        width: 90%;
+    }
+
+    .question:hover {
+        width: 95%;
+    }
+
+    .question:active {
+        width: 92%;
+    }
+
+    .main.tab {
         display: none;
     }
 
@@ -171,6 +199,20 @@
         margin: 10px auto;
         border: var(--darkpurple) 2px solid;
         border-radius: 5px;
+    }
+
+    #question {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    #choicesbox {
+        width: 90%;
+        height: 80%;
+        margin: 10px auto;
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto auto;
     }
 
     .wordcell {
