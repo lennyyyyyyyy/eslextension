@@ -20,7 +20,8 @@
     <div class="main tab" id="lessonscreen">
         <div class="tomain exit button"></div>
         <div class="header" style="margin: 5px auto 0px auto">Learn</div>
-        <div id="wordgrid"></div>
+        <div id="wordgridcontainer">
+        </div>
         <div class="lesson scroll button" style="left:2%"></div>
         <div class="lesson scroll button" style="right:2%"></div>
     </div>
@@ -54,13 +55,23 @@
     </div>
     <div class="main tab" id="testscreen">
         <div id="question"></div>
-        <div id="choicesbox">
-            <div class="question button"></div>
-            <div class="question button"></div>
-            <div class="question button"></div>
-            <div class="question button"></div>
+        <div class="choicesbox">
+            <div class="question button">
+                <div class="questiontext"></div>
+            </div>
+            <div class="question button">
+                <div class="questiontext"></div>
+            </div>
+            <div class="question button">
+                <div class="questiontext"></div>
+            </div>
+            <div class="question button">
+                <div class="questiontext"></div>
+            </div>
         </div>
         <div class="tomain exit button"></div>
+        <div class="answerfeedback" id="wrong" style="top: 100%;"><b>Incorrect!</b></div>
+        <div class="answerfeedback" id="right" style="top: 100%;"><b>Correct!</b></div>
     </div>
     <div class="tab" id="notestpopup" style="display:none">
         <div class="header">Learn more words.</div>
@@ -70,9 +81,30 @@
         </div>
         <div class="button" id="okbutton"><b>OK</b></div>
     </div>
+
     <div class="main tab" id="settingsscreen">
         <div class="tomain exit button"></div>
-        <div class="button" id="reset">RESET</div>
+        <div style="margin:auto; margin-top: 10px; font-size: 20pt">Settings</div>
+        <div class="setting">
+            In-browser testing:
+            <input type="checkbox" id="testbool">
+        </div>
+        <div class="setting">
+            In-browser recommondations:
+            <input type="checkbox" id="recommendbool">
+        </div>
+        <div class="setting">
+            Web Test Frequency:
+            <input type="number" id="testfreq">
+            %
+        </div>
+        <div class="setting" style="height:30px">
+            <div class="button" id="reset">FULL RESET</div>
+        </div>
+        <div class="desc">Do you want to recieve quizzes on words while browsing?</div>
+        <div class="desc">Do you want recommendations on words to learn while browsing?</div>
+        <div class="desc">How often do you want to be tested on known words while browsing?</div>
+        <div class="desc">Are you sure you want to reset the whole extension?</div>
     </div>
     <div class="lessontemplate activelesson tab" style="display:none">
         <div class="exit button"></div>
@@ -85,13 +117,32 @@
             <div class="header">Pronounciation</div>
             <audio controls class="lessonaudio">Your browser does not support audio</audio>
         </div>
+        <div class="lessonpage">
+            <div class="lessonquestion" style="margin-top:20px; text-align: center;"></div>
+            <div class="choicesbox">
+                <div class="question button">
+                    <div class="questiontext"></div>
+                </div>
+                <div class="question button">
+                    <div class="questiontext"></div>
+                </div>
+                <div class="question button">
+                    <div class="questiontext"></div>
+                </div>
+                <div class="question button">
+                    <div class="questiontext"></div>
+                </div>
+            </div>
+            <div class="answerfeedback" style="top: 100%;"><b>Incorrect!</b><br><b class="explanation"></b></div>
+            <div class="answerfeedback" style="top: 100%;"><b>Correct!</b><br><b class="explanation"></b></div>
+        </div>
         <div class="lessonpage" style="display:flex">
             <div class="finish button" style="text-align: center;">Finish Lesson</div>
         </div>
     </div>
     <div class="imagetemplate lessonpage" style="display: none">
         <img class="lessonimage">
-        <div class="desc"></div>
+        <div class="imgdesc" style="text-align: center;"></div>
     </div>
     <div class="definitiontemplate lessonpage" style="display:none">
         <div class="header"></div>
@@ -111,6 +162,7 @@
     body {
         width: 400px;
         height: 400px;
+        user-select: none;
     }
 
     .tab {
@@ -128,6 +180,10 @@
         font-family: Verdana, Geneva, Tahoma, sans-serif;
     }
 
+    #settingsscreen {
+        text-align: center;
+    }
+
     .row {
         display: flex;
         width: 100%;
@@ -138,11 +194,23 @@
         margin: auto;
     }
 
+    .explanation {
+        font-size: 7pt;
+    }
+
     .main.button {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 25pt;
         color: white;
         display: flex;
+    }
+
+    .main.button:hover {
+        font-size: 26pt;
+    }
+
+    .main.button:active {
+        font-size: 24.5pt;
     }
 
     .button {
@@ -153,21 +221,20 @@
         background-color: var(--lightpurple);
         border-radius: 8px;
         border: var(--darkpurple) 3px solid;
-        transition: width 0.5s, height 0.5s, background-color 0.5s;
+        transition: width 0.5s, height 0.5s, background-color 0.5s, font-size 0.5s;
     }
 
     .button:hover {
         width: 45%;
         height: 95%;
         background-color: var(--lighterpurple);
-        transition: width 0.5s, height 0.5s, background-color 0.5s;
     }
 
     .button:active {
         width: 42%;
         height: 89%;
         background-color: var(--darkishpurple);
-        transition: width 0.5s, height 0.5s, background-color 0.5s;
+        transition: width 0.3s, height 0.3s, background-color 0.3s, font-size 0.3s;
     }
 
     .exit {
@@ -192,31 +259,53 @@
 
     .question {
         width: 90%;
+        display: flex;
+        font-size: 12pt;
+        justify-content: center;
+        align-items: center;
+        font-family: fangsong;
     }
 
     .question:hover {
         width: 95%;
+        font-size: 13pt;
     }
 
     .question:active {
         width: 92%;
+        font-size: 11pt;
+    }
+
+    .questiontext {
+        display: inline;
+        text-align: center;
     }
 
     .main.tab {
         display: none;
     }
 
-    #wordgrid {
-        margin: 15px auto 0px auto;
+    .wordgrid {
+        height: 100%;
+        width: 100%;
         display: grid;
-        background-color: var(--lighterpurple);
+        gap: 5px;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+        transition: left 0.5s;
+        position: absolute;
+    }
+
+    #wordgridcontainer {
+        display: flex;
+        margin: 15px auto 0px auto;
         width: 89%;
         height: 85%;
         border: var(--darkishpurple) 3px solid;
         border-radius: 10px;
-        gap: 5px;
-        grid-template-columns: auto auto auto auto;
-        grid-template-rows: auto auto auto auto;
+        background-color: var(--lighterpurple);
+        clip-path: inset(0px 0px 0px 0px);
+        position: relative;
     }
 
     #vocabcontainer {
@@ -233,7 +322,7 @@
         margin-top: 20px;
     }
 
-    #choicesbox {
+    .choicesbox {
         width: 90%;
         height: 80%;
         margin: 10px auto;
@@ -249,21 +338,43 @@
         margin-top: 20%;
     }
 
+    #right {
+        color: darkgreen;
+    }
+
+    #wrong {
+        color: darkred;
+    }
+
+    .lessonstate {
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        top: 2px;
+        right: 2px;
+        border: 2px var(--darkpurple) solid;
+        border-radius: 10px;
+    }
+
     .wordcell {
         width: 90%;
         height: 90%;
-        margin: auto;
         text-align: center;
+        display: flex;
+        position: relative;
+        font-size: 10pt;
     }
 
     .wordcell:hover {
         width: 95%;
         height: 95%;
+        font-size: 11pt;
     }
 
     .wordcell:active {
         width: 88%;
         height: 88%;
+        font-size: 9pt;
     }
 
     .scroll {
@@ -303,6 +414,12 @@
         padding: 2px;
         border: var(--darkpurple) 2px solid;
         margin: 2px;
+        font-size: 9pt;
+        transition: font-size 0.5s;
+    }
+
+    .vocabword:hover {
+        font-size: 10pt;
     }
 
     .header {
@@ -332,6 +449,36 @@
         margin: 5px auto;
         display: block;
         height: 50%;
+    }
+
+    .answerfeedback,
+    .desc {
+        position: absolute;
+        width: 95%;
+        text-align: center;
+        height: 9%;
+        transition: top 0.5s;
+        border: 4px var(--darkishpurple) dashed;
+        margin: auto;
+        background: var(--lighterpurple);
+        left: 1.5%;
+        padding-top: 3px;
+        font-size: 10pt;
+        top: 100%;
+    }
+
+    .setting {
+        margin: auto;
+        display: block;
+        font-size: 10pt;
+        margin-top: 10px;
+        transition: background-color 0.5s, font-size 0.5s;
+    }
+
+    .setting:hover {
+        background-color: #fbfbfb;
+        font-size: 12pt;
+        transition: background-color 0.5s, font-size 0.5s;
     }
 </style>
 
