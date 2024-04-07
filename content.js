@@ -141,9 +141,20 @@ for (let i in words) {
     wordToIndex[words[i]["word"]] = i; // make words to index value
 }
 
+
+// update lesson timer
+chrome.runtime.sendMessage({ purpose: "updateLessonTimer" });
+
+
 const learnedset = new Set();
 const unlearnedset = new Set();
 chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "testBool", "recommendBool"]).then((result) => { // make learned and unlearned sets from local storage
+
+    // if no need then dont insert style
+    if (result.testBool || result.recommendBool) {
+        document.body.innerHTML += styleInsert;
+    }
+
     for (let i in words) {
         if (result.wordStates[i] == "learned") {
             learnedset.add(words[i]["word"]);
@@ -175,13 +186,13 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
                 let rws = collection[i].getElementsByClassName("rw"); // get all recommended words
                 for (let rw of rws) {
                     let button = rw.getElementsByClassName("recommendbutton_eslhelper")[0];
-                    button.addEventListener("click", () => { // for each button, if clicked recommend that word
+                    button.addEventListener("click", () => {
                         chrome.storage.local.get("wordStates").then((result) => {
                             if (result.wordStates[wordToIndex[rw.innerText.toLocaleLowerCase()]] == "unlearned") {
                                 result.wordStates[wordToIndex[rw.innerText.toLocaleLowerCase()]] = "recommended";
                             }
                             chrome.storage.local.set({ wordStates: result.wordStates });
-                            button.remove(); // destroy button
+                            button.remove();
                         })
                     })
                 }
@@ -226,29 +237,28 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
 
 
                     let rightChoice = Math.floor(Math.random() * 4)
-
                     let buttons = collection[i].getElementsByClassName("question_eslhelper");
-                    console.log(buttons);
                     let buttontexts = collection[i].getElementsByClassName("questiontext_eslhelper");
                     let rightfeedback = collection[i].getElementsByClassName("rightanswer_eslhelper")[0];
                     let wrongfeedback = collection[i].getElementsByClassName("wronganswer_eslhelper")[0];
-                    for (let j = 0; j < 4; j++) {
-                        if (j == rightChoice) {
-                            buttontexts[j].innerText = lookingFor;
-                            buttons[j].addEventListener("click", () => {
+                    for (let k = 0; k < 4; k++) {
+                        if (k == rightChoice) {
+                            buttontexts[k].innerText = lookingFor;
+                            buttons[k].addEventListener("click", () => {
                                 rightfeedback.style.display = "flex";
                                 setTimeout(() => {
                                     collection[i].innerHTML = original;
-                                    chrome.runtime.sendMessage({ purpose: "updateLeitner", index: wordToIndex[lookingFor], correct: true }) // send message to update 
+                                    chrome.runtime.sendMessage({ purpose: "updateLeitner", index: wordToIndex[lookingFor], correct: true }) // send message to update
                                 }, 1000); // revert to original once question is answered
                             });
                         } else {
-                            buttontexts[j].innerText = wrongAnswers[Math.floor(Math.random() * wrongAnswers.length)];
-                            buttons[j].addEventListener("click", () => {
+                            buttontexts[k].innerText = wrongAnswers[Math.floor(Math.random() * wrongAnswers.length)];
+                            buttons[k].addEventListener("click", () => {
+                                console.log("clicked right")
                                 wrongfeedback.style.display = "flex";
                                 setTimeout(() => {
                                     collection[i].innerHTML = original;
-                                    chrome.runtime.sendMessage({ purpose: "updateLeitner", index: wordToIndex[lookingFor], correct: false }) // send message to update 
+                                    chrome.runtime.sendMessage({ purpose: "updateLeitner", index: wordToIndex[lookingFor], correct: false }) // send message to update
                                 }, 1000); // revert to original once question is answered
                             });
                         }
@@ -256,11 +266,6 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
                 }
             }
         }
-    }
-
-    // if no need then dont insert style
-    if (result.testBool || result.recommendBool) {
-        document.body.innerHTML += styleInsert;
     }
 });
 
@@ -287,7 +292,7 @@ let insert = `
 `
 
 let styleInsert = `
-    <style> 
+    <style>
         .lessonquestion_eslhelper {
             margin-top: 10px;
             text-align: center;
@@ -396,3 +401,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         })
     }
 })
+
+

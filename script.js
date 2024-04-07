@@ -11,121 +11,121 @@ const words = [{
     "word": "dog",
     "questions": ["I love it when Sam's ____ barks at me!"],
     "imgPages": [["https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "A dog."]],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "lessonquestion": "What sound does a dog make?",
+    "answers": ["woof", "meow", "moo", "baa"],
+    "explanations": ["Woof is a sound a dog can make.", "A dog mostly woofs or barks."]
 },
 {
     "word": "cat",
     "questions": ["Max's ___ purrs when they are happy."],
     "imgPages": [["https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "A cat."]],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "lessonquestion": "What sound does a cat make",
+    "answers": ["meow", "woof", "baa", "moo"],
+    "explanations": ["Meow is a sound a cat can make.", "A car mostly meows or purrs."]
 },
 {
     "word": "talk",
     "questions": ["I'm interested. Please ___."],
     "imgPages": [["https://images.pexels.com/photos/1181715/pexels-photo-1181715.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "People talking to each other."]],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "lessonquestion": "What is talking?",
+    "answers": ["When you use your mouth to make words", "When you grab something", "When you follow someone", "When you run fast"],
+    "explanations": ["You use your mouth to talk.", "You don't use your hands, arms, or legs to talk."]
 },
 {
     "word": "read",
     "questions": ["I ___ in my books every day."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/5604251/pexels-photo-5604251.jpeg?auto=compress&cs=tinysrgb&w=600", "Children reading a book."]],
+    "lessonquestion": "Where would you read a book?",
+    "answers": ["The library", "Crossing the street", "At a birthday party", "Going down a slide"],
+    "explanations": ["The library is the best place to read a book.", "You'd be too busy to read a book."]
 },
 {
     "word": "listen",
     "questions": ["Just ___ to what they have to say."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/1181368/pexels-photo-1181368.jpeg?auto=compress&cs=tinysrgb&w=600", "She listens with headphones."]],
+    "lessonquestion": "When would it be important to listen?",
+    "answers": ["When a teacher is talking", "Nap time", "When eating lunch", "Walking to school"],
+    "explanations": ["Teachers say things for you to listen.", "When no one is talking you might not need to listen."]
 },
 {
     "word": "eat",
     "questions": ["This looks like a good spot to ___ lunch."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/406152/pexels-photo-406152.jpeg?auto=compress&cs=tinysrgb&w=600", "Salads are healthy to eat."]],
+    "lessonquestion": "What can you eat?",
+    "answers": ["A sandwich", "A shoe", "A pencil", "A finger"],
+    "explanations": ["Sandwiches are tasty.", "There are some things you cannot eat."]
 },
 {
     "word": "smile",
     "questions": ["Relief brought a ___ to her lips."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/774866/pexels-photo-774866.jpeg?auto=compress&cs=tinysrgb&w=600", "Smiling in a mirror"]],
+    "lessonquestion": "When would you smile?",
+    "answers": ["When you're happy", "When you're angry", "When you're sad", "When you're hungry"],
+    "explanations": ["You smile when you're happy", "Other faces have other emotions."]
 },
 {
     "word": "draw",
     "questions": ["Lisa did the best she could to ___ a map on the small piece of paper."],
     "imgPages": [["https://images.pexels.com/photos/1478477/pexels-photo-1478477.jpeg?auto=compress&cs=tinysrgb&w=600", "You can draw a picture with a pencil."], ["https://images.pexels.com/photos/56850/uniform-ceremonial-red-arm-56850.jpeg?auto=compress&cs=tinysrgb&w=600", "Drawing can also mean to bring something out, like drawing a sword."]],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "lessonquestion": "What can you draw with?",
+    "answers": ["Marker", "Shoe", "Flashlight", "Clothes"],
+    "explanations": ["Besides a pencil, you can draw with many other things.", "You can't draw with everyday items."]
 },
 {
     "word": "look",
     "questions": ["Let's go ___ at the horses."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/715546/pexels-photo-715546.jpeg?auto=compress&cs=tinysrgb&w=600", "He's looking at you!"]],
+    "lessonquestion": "What do you use to look?",
+    "answers": ["eyes", "fingers", "hands", "legs"],
+    "explanations": ["Eyes are for looking", "These are for moving and touching"]
 },
 {
     "word": "cry",
     "questions": ["She wanted to scream, ___, or flee."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/47090/baby-tears-small-child-sad-47090.jpeg?auto=compress&cs=tinysrgb&w=600", "Babies often cry."]],
+    "lessonquestion": "When would you want to cry?",
+    "answers": ["If you're sad", "If you do good on a test", "If you're at the park", "If you're playing with friends"],
+    "explanations": ["When bad things happen, it's ok to cry.", "Most of the time, people don't cry"]
 },
 {
     "word": "write",
     "questions": ["He loved poetry and soon began to ___ poems of his own."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/834897/pexels-photo-834897.jpeg?auto=compress&cs=tinysrgb&w=600", "Lots of people write in journals."]],
+    "lessonquestion": "What can't you write",
+    "answers": ["a picture", "a letter", "a poem", "a sentence"],
+    "explanations": ["You can only write words.", "You can write words and other things"]
 },
 {
     "word": "sleep",
     "questions": ["I went to ___ last night, almost as soon as my head hit the pillow."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/935777/pexels-photo-935777.jpeg?auto=compress&cs=tinysrgb&w=600", "Everyone sleeps"]],
+    "lessonquestion": "What time would you want to sleep?",
+    "answers": ["8 o'clock", "12 o'clock", "11 o'clock", "1 o'clock"],
+    "explanations": ["If it's late you should go sleep.", "You shouldn't sleep in the middle of the day."]
 },
 {
     "word": "night",
     "questions": ["The ___ was dark and damp."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/631477/pexels-photo-631477.jpeg?auto=compress&cs=tinysrgb&w=600", "Sometimes you can see stars at night."]],
+    "lessonquestion": "What is night like?",
+    "answers": ["The time when it's dark outside", "The time when you play outside in the sunshine.", "The time when you eat breakfast", "When you get picked up by the school bus"],
+    "explanations": ["Nights are dark.", "Night is the opposite of day."]
 },
 {
     "word": "day",
     "questions": ["It was midsummer, and the ___ was very hot"],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/296234/pexels-photo-296234.jpeg?auto=compress&cs=tinysrgb&w=600", "Days are bright."]],
+    "lessonquestion": "What can you see during the day?",
+    "answers": ["The sun", "Owls", "The moon", "Your dreams"],
+    "explanations": ["The sun comes up during the day", "These things come at night."]
 },
 {
     "word": "home",
-    "questions": ["I suppose no place is better than ___ on Christmas."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "questions": ["No place is better than ___ on Christmas."],
+    "imgPages": [["https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600", "Home can be a house, but it doesn't have to be."]],
+    "lessonquestion": "What is home?",
+    "answers": ["Where you live with your family", "Where you learn from teachers", "Where you go down slides", "Where you sit with your friends"],
+    "explanations": ["Home is where your family is.", "These other places are not home."]
 },
 {
     "word": "family",
@@ -340,23 +340,7 @@ wordscroll[1].addEventListener("click", () => {
 
 
 
-
-
-
-
-
-
-function incrementLessonTimer() {
-    chrome.storage.local.get(["lessonTimer", "lastTime"]).then((result) => {
-        var newDate = new Date();
-        var newTime = newDate.getTime()
-        result.lessonTimer += (newTime - result.lastTime) / (5 * 60 * 1000); // increments by one every 5 mins
-        console.log(result.lessonTimer);
-        chrome.storage.local.set({ lessonTimer: result.lessonTimer, lastTime: newTime });
-    });
-}
-
-setInterval(incrementLessonTimer, 60000) // updates every min;
+setInterval(() => { chrome.runtime.sendMessage({ purpose: "updateLessonTimer" }) }, 60000) // updates lesson timer every min;
 
 const wordstate = [];
 for (let i in words) {

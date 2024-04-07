@@ -53,6 +53,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         } else {
             questionWrong(request.index);
         }
+    } else if (request.purpose == "updateLessonTimer") {
+        chrome.storage.local.get(["lessonTimer", "lastTime"]).then((result) => {
+            var newDate = new Date();
+            var newTime = newDate.getTime()
+            result.lessonTimer += (newTime - result.lastTime) / (5 * 60 * 1000); // increments by one every 5 mins
+            console.log(result.lessonTimer);
+            chrome.storage.local.set({ lessonTimer: result.lessonTimer, lastTime: newTime });
+        });
     }
 })
 
@@ -63,16 +71,17 @@ chrome.runtime.onInstalled.addListener(() => {
         contexts: ["selection"],
         id: "audio"
     })
-    chrome.contextMenus.onClicked.addListener((info, tab) => {
-        console.log("https://api.dictionaryapi.dev/api/v2/entries/en/" + info.selectionText.toLocaleLowerCase());
-        fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + info.selectionText.toLocaleLowerCase()).then((result) => { return result.json(); }).then((json) => {
-            for (let p of json[0]["phonetics"]) {
-                if (p["audio"] != undefined && p["audio"] != "") {
-                    chrome.tabs.sendMessage(tab.id, { purpose: "playAudio", src: p["audio"] });
-                    break;
-                }
+})
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + info.selectionText.toLocaleLowerCase()).then((result) => { return result.json(); }).then((json) => {
+        for (let p of json[0]["phonetics"]) {
+            if (p["audio"] != undefined && p["audio"] != "") {
+                chrome.tabs.sendMessage(tab.id, { purpose: "playAudio", src: p["audio"] });
+                break;
             }
-        })
+        }
     })
 })
+
 

@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "ESL Extension",
-    "description": "ESL Helper",
+    "name": "ESL Helper",
+    "description": "Learn English anytime",
     "version": "1.0",
     "action": {
         "default_popup": "main.html",

@@ -137,7 +137,7 @@
             <div class="answerfeedback" style="top: 100%;"><b>Correct!</b><br><b class="explanation"></b></div>
         </div>
         <div class="lessonpage" style="display:flex">
-            <div class="finish button" style="text-align: center;">Finish Lesson</div>
+            <div class="finish button">Finish Lesson</div>
         </div>
     </div>
     <div class="imagetemplate lessonpage" style="display: none">
@@ -263,7 +263,6 @@
         font-size: 12pt;
         justify-content: center;
         align-items: center;
-        font-family: fangsong;
     }
 
     .question:hover {
@@ -274,6 +273,21 @@
     .question:active {
         width: 92%;
         font-size: 11pt;
+    }
+
+    .finish {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 43%;
+    }
+
+    .finish:hover {
+        height: 45%;
+    }
+
+    .finish:active {
+        height: 42%;
     }
 
     .questiontext {
