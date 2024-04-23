@@ -11,129 +11,137 @@ const words = [{
     "word": "dog",
     "questions": ["I love it when Sam's ____ barks at me!"],
     "imgPages": [["https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "A dog."]],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "lessonquestion": "What sound does a dog make?",
+    "answers": ["woof", "meow", "moo", "baa"],
+    "explanations": ["Woof is a sound a dog can make.", "A dog mostly woofs or barks."]
 },
 {
     "word": "cat",
     "questions": ["Max's ___ purrs when they are happy."],
     "imgPages": [["https://images.pexels.com/photos/416160/pexels-photo-416160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "A cat."]],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "lessonquestion": "What sound does a cat make",
+    "answers": ["meow", "woof", "baa", "moo"],
+    "explanations": ["Meow is a sound a cat can make.", "A car mostly meows or purrs."]
+},
+{
+    "word": "touch",
+    "questions": ["We kept in ___ with Aunt Clara.", "Add a ___ of salt to the mix.", "Don't ___ the stray cat!", "Don't ___ the hot stove!"],
+    "imgPages": [["https://images.pexels.com/photos/1712725/pexels-photo-1712725.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "You touch and feel things with your hands, like a dog."], ["https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "To 'keep in touch' means to talk and catch up with someone regularly, even if they're far."], ["https://cdn.pixabay.com/photo/2021/09/14/14/17/himalayan-salt-6624128_1280.jpg", "A touch is also a little bit of something, like salt."]],
+    "lessonquestion": "What don't you want to touch?",
+    "answers": ["A hot fire", "A pillow", "Soft snow", "A cotton blanket"],
+    "explanations": ["It would hurt to touch a fire.", "These are very nice to touch."]
 },
 {
     "word": "talk",
     "questions": ["I'm interested. Please ___."],
     "imgPages": [["https://images.pexels.com/photos/1181715/pexels-photo-1181715.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "People talking to each other."]],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "lessonquestion": "What is talking?",
+    "answers": ["When you use your mouth to make words", "When you grab something", "When you follow someone", "When you run fast"],
+    "explanations": ["You use your mouth to talk.", "You don't use your hands, arms, or legs to talk."]
 },
 {
     "word": "read",
-    "questions": ["I ___ in my books every day."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "questions": ["I ___ in my books every day.", "He opened the envelope and ___ the note.", "Sometimes I think my mom can ___ my mind.", "Did you ___ the news today?", "Claire searched his face, trying to ___ him."],
+    "imgPages": [["https://images.pexels.com/photos/5604251/pexels-photo-5604251.jpeg?auto=compress&cs=tinysrgb&w=600", "Children reading a book."], ["https://images.pexels.com/photos/8101840/pexels-photo-8101840.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "Reading a person's face or mind is trying to figure out what they're feeling."]],
+    "lessonquestion": "Where would you read a book?",
+    "answers": ["The library", "Crossing the street", "At a birthday party", "Going down a slide"],
+    "explanations": ["The library is the best place to read a book.", "You'd be too busy to read a book."]
 },
 {
     "word": "listen",
-    "questions": ["Just ___ to what they have to say."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "questions": ["Just ___ to what they have to say.", "She would not ___ to her parents.", "To ___ to music can be relaxing.", "Try to ___ to her advice.", "He wanted to ___ to his own heartbeat."],
+    "imgPages": [["https://images.pexels.com/photos/1181368/pexels-photo-1181368.jpeg?auto=compress&cs=tinysrgb&w=600", "She listens with headphones."], ["https://images.pexels.com/photos/7078729/pexels-photo-7078729.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", "Listening to someone also means following their directions."]],
+    "lessonquestion": "When would it be important to listen?",
+    "answers": ["When a teacher is talking", "Nap time", "When eating lunch", "Walking to school"],
+    "explanations": ["Teachers say things for you to listen.", "When no one is talking you might not need to listen."]
 },
 {
     "word": "eat",
     "questions": ["This looks like a good spot to ___ lunch."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/406152/pexels-photo-406152.jpeg?auto=compress&cs=tinysrgb&w=600", "Salads are healthy to eat."]],
+    "lessonquestion": "What can you eat?",
+    "answers": ["A sandwich", "A shoe", "A pencil", "A finger"],
+    "explanations": ["Sandwiches are tasty.", "There are some things you cannot eat."]
 },
 {
     "word": "smile",
     "questions": ["Relief brought a ___ to her lips."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/774866/pexels-photo-774866.jpeg?auto=compress&cs=tinysrgb&w=600", "Smiling in a mirror"]],
+    "lessonquestion": "When would you smile?",
+    "answers": ["When you're happy", "When you're angry", "When you're sad", "When you're hungry"],
+    "explanations": ["You smile when you're happy", "Other faces have other emotions."]
 },
 {
     "word": "draw",
     "questions": ["Lisa did the best she could to ___ a map on the small piece of paper."],
     "imgPages": [["https://images.pexels.com/photos/1478477/pexels-photo-1478477.jpeg?auto=compress&cs=tinysrgb&w=600", "You can draw a picture with a pencil."], ["https://images.pexels.com/photos/56850/uniform-ceremonial-red-arm-56850.jpeg?auto=compress&cs=tinysrgb&w=600", "Drawing can also mean to bring something out, like drawing a sword."]],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "lessonquestion": "What can you draw with?",
+    "answers": ["Marker", "Shoe", "Flashlight", "Clothes"],
+    "explanations": ["Besides a pencil, you can draw with many other things.", "You can't draw with everyday items."]
 },
 {
     "word": "look",
     "questions": ["Let's go ___ at the horses."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/715546/pexels-photo-715546.jpeg?auto=compress&cs=tinysrgb&w=600", "He's looking at you!"]],
+    "lessonquestion": "What do you use to look?",
+    "answers": ["eyes", "fingers", "hands", "legs"],
+    "explanations": ["Eyes are for looking", "These are for moving and touching"]
 },
 {
     "word": "cry",
     "questions": ["She wanted to scream, ___, or flee."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/47090/baby-tears-small-child-sad-47090.jpeg?auto=compress&cs=tinysrgb&w=600", "Babies often cry."]],
+    "lessonquestion": "When would you want to cry?",
+    "answers": ["If you're sad", "If you do good on a test", "If you're at the park", "If you're playing with friends"],
+    "explanations": ["When bad things happen, it's ok to cry.", "Most of the time, people don't cry"]
 },
 {
     "word": "write",
     "questions": ["He loved poetry and soon began to ___ poems of his own."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/834897/pexels-photo-834897.jpeg?auto=compress&cs=tinysrgb&w=600", "Lots of people write in journals."]],
+    "lessonquestion": "What can't you write",
+    "answers": ["a picture", "a letter", "a poem", "a sentence"],
+    "explanations": ["You can only write words.", "You can write words and other things"]
 },
 {
     "word": "sleep",
     "questions": ["I went to ___ last night, almost as soon as my head hit the pillow."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/935777/pexels-photo-935777.jpeg?auto=compress&cs=tinysrgb&w=600", "Everyone sleeps"]],
+    "lessonquestion": "What time would you want to sleep?",
+    "answers": ["8 o'clock", "12 o'clock", "11 o'clock", "1 o'clock"],
+    "explanations": ["If it's late you should go sleep.", "You shouldn't sleep in the middle of the day."]
 },
 {
     "word": "night",
     "questions": ["The ___ was dark and damp."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/631477/pexels-photo-631477.jpeg?auto=compress&cs=tinysrgb&w=600", "Sometimes you can see stars at night."]],
+    "lessonquestion": "What is night like?",
+    "answers": ["The time when it's dark outside", "The time when you play outside in the sunshine.", "The time when you eat breakfast", "When you get picked up by the school bus"],
+    "explanations": ["Nights are dark.", "Night is the opposite of day."]
 },
 {
     "word": "day",
     "questions": ["It was midsummer, and the ___ was very hot"],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "imgPages": [["https://images.pexels.com/photos/296234/pexels-photo-296234.jpeg?auto=compress&cs=tinysrgb&w=600", "Days are bright."]],
+    "lessonquestion": "What can you see during the day?",
+    "answers": ["The sun", "Owls", "The moon", "Your dreams"],
+    "explanations": ["The sun comes up during the day", "These things come at night."]
 },
 {
     "word": "home",
-    "questions": ["I suppose no place is better than ___ on Christmas."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "questions": ["No place is better than ___ on Christmas."],
+    "imgPages": [["https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=600", "Home can be a house, but it doesn't have to be."]],
+    "lessonquestion": "What is home?",
+    "answers": ["Where you live with your family", "Where you learn from teachers", "Where you go down slides", "Where you sit with your friends"],
+    "explanations": ["Home is where your family is.", "These other places are not home."]
 },
 {
     "word": "family",
-    "questions": ["My ___ has my father and mother, two older brothers, and a little sister, Mildred."],
-    "imgPages": [],
-    "lessonquestion": "filler",
-    "answers": ["filler", "filler", "filler", "filler"],
-    "explanations": ["filler", "filler"]
+    "questions": ["My ___ includes my father and mother, two older brothers, and a little sister, Mildred."],
+    "imgPages": [["https://images.pexels.com/photos/4205505/pexels-photo-4205505.jpeg?auto=compress&cs=tinysrgb&w=600", "A family is who you grow up with."]],
+    "lessonquestion": "When would you be with your family?",
+    "answers": ["At home", "At school", "In the bathroom", "At a sleepover"],
+    "explanations": ["Most of the time, you're at home with your family", "There are some times when you're not with your family"]
 }];
 
 const wordToIndex = {};
@@ -152,7 +160,7 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
 
     // if no need then dont insert style
     if (result.testBool || result.recommendBool) {
-        document.body.innerHTML += styleInsert;
+        document.head.innerHTML += styleInsert;
     }
 
     for (let i in words) {
@@ -175,8 +183,10 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
                     let html = collection[i].innerHTML;
                     if (" .,?'!@#$%^&*():;<>/\"".includes(html[j])) {
                         if (word != "" && unlearnedset.has(word.toLocaleLowerCase())) {
-                            collection[i].innerHTML = html.slice(0, j - word.length) + "<u class='rw'>" + word + "<div class='recommendbutton_eslhelper'></div></u>" + html.slice(j, html.length);
-                            j += 53;
+                            let before = "<u style='position:relative;' class='rw'><u class='word_eslhelper'>";
+                            let after = "</u><div class='recommendpopup_eslhelper'><div style='font-size: 7pt;text-align: center;'>Add to recommended?</div><div class='recommendbutton_eslhelper'></div></div></u>"
+                            collection[i].innerHTML = html.slice(0, j - word.length) + before + word + after + html.slice(j, html.length);
+                            j += before.length + after.length;
                         }
                         word = "";
                     } else {
@@ -185,14 +195,25 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
                 }
                 let rws = collection[i].getElementsByClassName("rw"); // get all recommended words
                 for (let rw of rws) {
+                    let word = rw.getElementsByClassName("word_eslhelper")[0];
+                    let popup = rw.getElementsByClassName("recommendpopup_eslhelper")[0];
                     let button = rw.getElementsByClassName("recommendbutton_eslhelper")[0];
+                    // dissapearing when hovering and exiting word and popup
+                    rw.addEventListener("mouseover", () => {
+                        popup.style.display = "block";
+                    })
+                    rw.addEventListener("mouseout", () => {
+                        popup.style.display = "none";
+                    })
                     button.addEventListener("click", () => {
                         chrome.storage.local.get("wordStates").then((result) => {
-                            if (result.wordStates[wordToIndex[rw.innerText.toLocaleLowerCase()]] == "unlearned") {
-                                result.wordStates[wordToIndex[rw.innerText.toLocaleLowerCase()]] = "recommended";
+                            if (result.wordStates[wordToIndex[word.innerText.toLocaleLowerCase()]] == "unlearned") {
+                                result.wordStates[wordToIndex[word.innerText.toLocaleLowerCase()]] = "recommended";
                             }
                             chrome.storage.local.set({ wordStates: result.wordStates });
-                            button.remove();
+                            // make normal, removing popup and eventlisteners
+                            popup.remove();
+                            rw.replaceWith(rw.cloneNode(true));
                         })
                     })
                 }
@@ -208,22 +229,22 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
                 let original = collection[i].innerHTML;
                 let word = "";
                 let lookingFor = "";
-                for (let j = 0; j < collection[i].innerText.length; j++) { // loop over character
-                    let text = collection[i].innerText;
-                    if (" .,?'!@#$%^&*():;<>/\"".includes(text[j])) { // a new word has ended
+                for (let j = 0; j < collection[i].innerHTML.length; j++) { // loop over character
+                    let html = collection[i].innerHTML;
+                    if (" .,?'!@#$%^&*():;<>/\"".includes(html[j])) { // a new word has ended
                         if (word != "") {
                             if (lookingFor == "") { // is it the first word found?
                                 if (learnedset.has(word.toLocaleLowerCase()) && !done.has(word.toLocaleLowerCase()) && result.leitner[wordToIndex[word.toLocaleLowerCase()]][1] <= result.lessonTimer) {
                                     lookingFor = word.toLocaleLowerCase();
-                                    collection[i].innerText = text.slice(0, j - word.length) + "_".repeat(word.length) + text.slice(j, text.length);
+                                    collection[i].innerHTML = html.slice(0, j - word.length) + "_".repeat(word.length) + html.slice(j, html.length);
                                 } else if (lookingFor == word.toLocaleLowerCase()) {
-                                    collection[i].innerText = text.slice(0, j - word.length) + "_".repeat(word.length) + text.slice(j, text.length);
+                                    collection[i].innerHTML = html.slice(0, j - word.length) + "_".repeat(word.length) + html.slice(j, html.length);
                                 }
                             }
                         }
                         word = "";
                     } else {
-                        word += text[j];
+                        word += html[j];
                     }
                 }
                 if (lookingFor != "") { // question to fill blanks
@@ -299,6 +320,7 @@ let styleInsert = `
             font-size: 10pt;
         }
         .insertedquestion_eslhelper {
+            user-select:none;
             width: 300px;
             height: 300px;
             background-color: #f3f3f3;
@@ -363,26 +385,45 @@ let styleInsert = `
             background-color: pink;
         }
         .recommendbutton_eslhelper {
-            width: 16px;
-            display: inline-block;
-            margin: 0px 3px -4px 3px;
-            height: 16px;
+            display: flex;
+            width: 43px;
+            height: 43px;
             background-color: #8e7cc3;
-            border-radius: 2px;
-            border: #674ea7 1px solid;
+            border-radius: 5px;
+            border: #674ea7 2px solid;
             transition: width 0.5s, height 0.5s, background-color 0.5s, font-size 0.5s;
+            margin: auto;
         }
 
         .recommendbutton_eslhelper:hover {
-            width: 16.5px;
-            height: 16.5px;
+            width: 44px;
+            height: 44px;
             background-color: #a190d5;
         }
 
         .recommendbutton_eslhelper:active {
-            width: 15.5px;
-            height: 15.5px;
+            width: 42px;
+            height: 42px;
             background-color: #7860b4;
+        }
+
+        .recommendpopup_eslhelper {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #a190d5;
+            border: 2px solid #7860b4;
+            border-radius: 3px;
+            display: none;
+            right: calc(50% - 41px);
+            top: 100%;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .rw {
+            position: relative;
         }
     </style>
 `

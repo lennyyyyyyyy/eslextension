@@ -1,4 +1,4 @@
-const wordsLength = 17;
+const wordsLength = 18;
 // set default values for local storage
 function setDefault(name, def) {
     chrome.storage.local.get(name).then((result) => {
