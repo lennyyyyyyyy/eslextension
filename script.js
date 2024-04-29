@@ -142,7 +142,7 @@ const words = [{
     "lessonquestion": "When would you be with your family?",
     "answers": ["At home", "At school", "In the bathroom", "At a sleepover"],
     "explanations": ["Most of the time, you're at home with your family", "There are some times when you're not with your family"]
-}];
+} ];
 
 
 // pregenerate all lessons
