@@ -177,7 +177,10 @@ function replaceWordInElement(element, word, html) {
     }
 }
 
-
+// $(document).ready(function(event) { 
+    console.log(document.querySelectorAll("html")[0].innerHTML);
+    console.log(document.querySelectorAll("html")[0].innerHTML.match(new RegExp("(?![^<>]*>)\\bcat\\b", "gi")));
+// });
 
 
 const learnedset = new Set();
@@ -198,12 +201,12 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
     if (result.recommendBool) {
         // unlearned words are highlighted in case you want to learn
         for (let i = 0; i < collection.length; i++) {
-            if (collection[i].innerText != undefined && collection[i].innerText.length > 0) {
+            if (document.innerText != undefined && document.innerText.length > 0) {
                 // replace unlearned words so they can be recommended
                 unlearnedset.forEach((value, key, set) => {
-                    replaceWordInElement(collection[i], value, "<u style='position:relative;' class='rw_eslhelper'><u class='word_eslhelper'>" + value + "</u><div class='recommendpopup_eslhelper'><div style='font-size: 7pt;text-align: center;'>Add to recommended?</div><div class='recommendbutton_eslhelper'></div></div></u>")
+                    replaceWordInElement(document, value, "<u style='position:relative;' class='rw_eslhelper'><u class='word_eslhelper'>" + value + "</u><div class='recommendpopup_eslhelper'><div style='font-size: 7pt;text-align: center;'>Add to recommended?</div><div class='recommendbutton_eslhelper'></div></div></u>")
                 })
-                let rws = collection[i].getElementsByClassName("rw_eslhelper"); // get all recommended words
+                let rws = document.getElementsByClassName("rw_eslhelper"); // get all recommended words
                 for (let rw of rws) {
                     let word = rw.getElementsByClassName("word_eslhelper")[0];
                     let popup = rw.getElementsByClassName("recommendpopup_eslhelper")[0];
@@ -232,68 +235,70 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
     }
     // test or not?
     if (result.testBool) {
-        let done = new Set(); // no repeat questions
-        // learned words are tested on
-        for (let i = 0; i < collection.length; i++) {
-            if (collection[i].innerText != undefined && collection[i].innerText.length > 0 && Math.random() < (result.testFreq / 100)) { // chance of paragraph selected
-                let original = collection[i].innerHTML;
-                let word = "";
-                let lookingFor = "";
-                for (let j = 0; j < collection[i].innerHTML.length; j++) { // loop over character
-                    let html = collection[i].innerHTML;
-                    if (" .,?'!@#$%^&*():;<>/\"".includes(html[j])) { // a new word has ended
-                        if (word != "") {
-                            if (lookingFor == "") { // is it the first word found?
-                                if (learnedset.has(word.toLocaleLowerCase()) && !done.has(word.toLocaleLowerCase()) && result.leitner[wordToIndex[word.toLocaleLowerCase()]][1] <= result.lessonTimer) {
-                                    lookingFor = word.toLocaleLowerCase();
-                                    collection[i].innerHTML = html.slice(0, j - word.length) + "_".repeat(word.length) + html.slice(j, html.length);
-                                } else if (lookingFor == word.toLocaleLowerCase()) {
-                                    collection[i].innerHTML = html.slice(0, j - word.length) + "_".repeat(word.length) + html.slice(j, html.length);
-                                }
-                            }
-                        }
-                        word = "";
-                    } else {
-                        word += html[j];
-                    }
+        // selects the most frequent learned word
+        var maxWord = "";
+        var maxOccurences = 0;
+        learnedset.forEach((value, key, set) => {
+            var matches = document.querySelectorAll("html")[0].innerHTML.match(new RegExp("(?![^<>]*>)\\b" + value + "\\b", "gi"));
+            if (matches != null && matches.length > maxOccurences) {
+                console.log(matches.length);
+                maxWord = value;
+                maxOccurences = matches.length;
+            }
+        })
+        if (maxWord != "" && Math.random() < (result.testFreq / 100)) { // chance of question
+            var origHTML = $("body").html();
+            $("body").append(insert);
+            replaceWordInElement(document.body, maxWord, "<span class='blank_eslhelper'>" +"_".repeat(maxWord.length) + "</span>");
+            $(".blank_eslhelper").on({
+                mouseenter: (event) => {
+                    $(".insertedquestion_eslhelper").show();
+                    $(".insertedquestion_eslhelper").css("top", $(event.delegateTarget).offset().top + $(event.delegateTarget).height());
+                    $(".insertedquestion_eslhelper").css("left", $(event.delegateTarget).offset().left + $(event.delegateTarget).width() / 2 - $(".insertedquestion_eslhelper").width() / 2);
+                },
+                mouseleave: () => {
+                    $(".insertedquestion_eslhelper").hide();
                 }
-                if (lookingFor != "") { // question to fill blanks
-                    done.add(lookingFor);
-                    collection[i].innerHTML += insert;
+            });
+            $(".insertedquestion_eslhelper").on({
+                mouseleave: () => {
+                    $(".insertedquestion_eslhelper").hide();
+                },
+                mouseenter: () => {
+                    $(".insertedquestion_eslhelper").show();
+                }
+            })
+            let wrongAnswers = new Set(learnedset); // clone set
+            wrongAnswers.delete(maxWord);
 
-                    let set = new Set(learnedset); //clone set
-                    set.delete(lookingFor);
-                    let wrongAnswers = [];
-                    set.forEach((value, key, set) => { wrongAnswers.push(value) }); // add all to wrongAnswers
 
-
-                    let rightChoice = Math.floor(Math.random() * 4)
-                    let buttons = collection[i].getElementsByClassName("question_eslhelper");
-                    let buttontexts = collection[i].getElementsByClassName("questiontext_eslhelper");
-                    let rightfeedback = collection[i].getElementsByClassName("rightanswer_eslhelper")[0];
-                    let wrongfeedback = collection[i].getElementsByClassName("wronganswer_eslhelper")[0];
-                    for (let k = 0; k < 4; k++) {
-                        if (k == rightChoice) {
-                            buttontexts[k].innerText = lookingFor;
-                            buttons[k].addEventListener("click", () => {
-                                rightfeedback.style.display = "flex";
-                                setTimeout(() => {
-                                    collection[i].innerHTML = original;
-                                    chrome.runtime.sendMessage({ purpose: "updateLeitner", index: wordToIndex[lookingFor], correct: true }) // send message to update
-                                }, 1000); // revert to original once question is answered
-                            });
-                        } else {
-                            buttontexts[k].innerText = wrongAnswers[Math.floor(Math.random() * wrongAnswers.length)];
-                            buttons[k].addEventListener("click", () => {
-                                console.log("clicked right")
-                                wrongfeedback.style.display = "flex";
-                                setTimeout(() => {
-                                    collection[i].innerHTML = original;
-                                    chrome.runtime.sendMessage({ purpose: "updateLeitner", index: wordToIndex[lookingFor], correct: false }) // send message to update
-                                }, 1000); // revert to original once question is answered
-                            });
-                        }
-                    }
+            let rightChoice = Math.floor(Math.random() * 4)
+            let buttons = document.getElementsByClassName("question_eslhelper");
+            let buttontexts = document.getElementsByClassName("questiontext_eslhelper");
+            let rightfeedback = document.getElementsByClassName("rightanswer_eslhelper")[0];
+            let wrongfeedback = document.getElementsByClassName("wronganswer_eslhelper")[0];
+            for (let k = 0; k < 4; k++) {
+                if (k == rightChoice) {
+                    buttontexts[k].innerText = maxWord;
+                    buttons[k].addEventListener("click", () => {
+                        rightfeedback.style.display = "flex";
+                        setTimeout(() => {
+                            console.log(origHTML)
+                            $("body").html(origHTML);
+                            chrome.runtime.sendMessage({ purpose: "updateLeitner", index: wordToIndex[maxWord], correct: true }) // send message to update
+                        }, 1000); // revert to original once question is answered
+                    });
+                } else {
+                    buttontexts[k].innerText = [...wrongAnswers][Math.floor(Math.random() * wrongAnswers.size)]; // spread set into array and select randmo value
+                    buttons[k].addEventListener("click", () => {
+                        console.log("clicked right")
+                        wrongfeedback.style.display = "flex";
+                        setTimeout(() => {
+                            console.log(origHTML)
+                            $("body").html(origHTML);
+                            chrome.runtime.sendMessage({ purpose: "updateLeitner", index: wordToIndex[maxWord], correct: false }) // send message to update
+                        }, 1000); // revert to original once question is answered
+                    });
                 }
             }
         }
