@@ -1,0 +1,111 @@
+.lessonquestion_eslhelper {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 10pt;
+}
+.insertedquestion_eslhelper {
+    user-select:none;
+    width: 300px;
+    height: 300px;
+    background-color: #f3f3f3;
+    border: 3px #a190d5 solid;
+    position: relative;
+}
+.question_eslhelper {
+    width: 90%;
+    display: flex;
+    margin:auto;
+    height: 90%;
+    background-color: #8e7cc3;
+    border-radius: 8px;
+    border: #674ea7 3px solid;
+    transition: width 0.5s, height 0.5s, background-color 0.5s, font-size 0.5s;
+    justify-content: center;
+    align-items: center;
+    font-size: 12pt;
+}
+
+.question_eslhelper:hover {
+    width: 95%;
+    height: 95%;
+    background-color: #a190d5;
+    font-size: 13pt;
+}
+
+.question_eslhelper:active {
+    width: 89%;
+    height: 89%;
+    background-color: #7860b4;
+    font-size: 11pt;
+    transition: width 0.3s, height 0.3s, background-color 0.3s, font-size 0.3s;
+}
+
+.choicesbox_eslhelper {
+    width: 90%;
+    height: 80%;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+}
+
+.answerfeedback_eslhelper {
+    height: 100%;
+    width: 100%;
+    display: none;
+    position: absolute;
+    top: 0%;
+    align-items: center;
+    justify-content: center;
+    font-size: 30pt;
+    font-family: system-ui;
+}
+
+.rightanswer_eslhelper {
+    background-color: lightgreen;
+}
+
+.wronganswer_eslhelper {
+    background-color: pink;
+}
+.recommendbutton_eslhelper {
+    display: flex;
+    width: 43px;
+    height: 43px;
+    background-color: #8e7cc3;
+    border-radius: 5px;
+    border: #674ea7 2px solid;
+    transition: width 0.5s, height 0.5s, background-color 0.5s, font-size 0.5s;
+    margin: auto;
+}
+
+.recommendbutton_eslhelper:hover {
+    width: 44px;
+    height: 44px;
+    background-color: #a190d5;
+}
+
+.recommendbutton_eslhelper:active {
+    width: 42px;
+    height: 42px;
+    background-color: #7860b4;
+}
+
+.recommendpopup_eslhelper {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: #a190d5;
+    border: 2px solid #7860b4;
+    border-radius: 3px;
+    display: none;
+    right: calc(50% - 41px);
+    top: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.v_eslhelper{
+    position: relative;
+}

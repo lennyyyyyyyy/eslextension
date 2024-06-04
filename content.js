@@ -154,14 +154,35 @@ for (let i in words) {
 chrome.runtime.sendMessage({ purpose: "updateLessonTimer" });
 
 
+// replaces all occurences of a word in an element with some html, making sure it never replaces part of actual html tags and only inside other child elements
+function replaceWordInElement(element, word, html) {
+    const regex = new RegExp(`(?![^<>]*>)\\b${word}\\b`, 'gi');
+    const childNodes = element.childNodes;
+    
+    for (let i = 0; i < childNodes.length; i++) {
+        const node = childNodes[i];
+        
+        if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent;
+            const replacedText = text.replace(regex, html);
+            
+            if (replacedText !== text) {
+                const newNode = document.createElement('span');
+                newNode.innerHTML = replacedText;
+                element.replaceChild(newNode, node);
+            }
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+            replaceWordInElement(node, word, html);
+        }
+    }
+}
+
+
+
+
 const learnedset = new Set();
 const unlearnedset = new Set();
 chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "testBool", "recommendBool"]).then((result) => { // make learned and unlearned sets from local storage
-
-    // if no need then dont insert style
-    if (result.testBool || result.recommendBool) {
-        document.head.innerHTML += styleInsert;
-    }
 
     for (let i in words) {
         if (result.wordStates[i] == "learned") {
@@ -178,22 +199,11 @@ chrome.storage.local.get(["wordStates", "testFreq", "leitner", "lessonTimer", "t
         // unlearned words are highlighted in case you want to learn
         for (let i = 0; i < collection.length; i++) {
             if (collection[i].innerText != undefined && collection[i].innerText.length > 0) {
-                let word = "";
-                for (let j = 0; j < collection[i].innerHTML.length; j++) {
-                    let html = collection[i].innerHTML;
-                    if (" .,?'!@#$%^&*():;<>/\"".includes(html[j])) {
-                        if (word != "" && unlearnedset.has(word.toLocaleLowerCase())) {
-                            let before = "<u style='position:relative;' class='rw'><u class='word_eslhelper'>";
-                            let after = "</u><div class='recommendpopup_eslhelper'><div style='font-size: 7pt;text-align: center;'>Add to recommended?</div><div class='recommendbutton_eslhelper'></div></div></u>"
-                            collection[i].innerHTML = html.slice(0, j - word.length) + before + word + after + html.slice(j, html.length);
-                            j += before.length + after.length;
-                        }
-                        word = "";
-                    } else {
-                        word += html[j];
-                    }
-                }
-                let rws = collection[i].getElementsByClassName("rw"); // get all recommended words
+                // replace unlearned words so they can be recommended
+                unlearnedset.forEach((value, key, set) => {
+                    replaceWordInElement(collection[i], value, "<u style='position:relative;' class='rw_eslhelper'><u class='word_eslhelper'>" + value + "</u><div class='recommendpopup_eslhelper'><div style='font-size: 7pt;text-align: center;'>Add to recommended?</div><div class='recommendbutton_eslhelper'></div></div></u>")
+                })
+                let rws = collection[i].getElementsByClassName("rw_eslhelper"); // get all recommended words
                 for (let rw of rws) {
                     let word = rw.getElementsByClassName("word_eslhelper")[0];
                     let popup = rw.getElementsByClassName("recommendpopup_eslhelper")[0];
@@ -310,122 +320,6 @@ let insert = `
         <div class="answerfeedback_eslhelper rightanswer_eslhelper"><h2>Correct!</h2></div>
         <div class="answerfeedback_eslhelper wronganswer_eslhelper"><h2>Incorrect!</h2></div>
     </div>
-`
-
-let styleInsert = `
-    <style>
-        .lessonquestion_eslhelper {
-            margin-top: 10px;
-            text-align: center;
-            font-size: 10pt;
-        }
-        .insertedquestion_eslhelper {
-            user-select:none;
-            width: 300px;
-            height: 300px;
-            background-color: #f3f3f3;
-            border: 3px #a190d5 solid;
-            position: relative;
-        }
-        .question_eslhelper {
-            width: 90%;
-            display: flex;
-            margin:auto;
-            height: 90%;
-            background-color: #8e7cc3;
-            border-radius: 8px;
-            border: #674ea7 3px solid;
-            transition: width 0.5s, height 0.5s, background-color 0.5s, font-size 0.5s;
-            justify-content: center;
-            align-items: center;
-            font-size: 12pt;
-        }
-
-        .question_eslhelper:hover {
-            width: 95%;
-            height: 95%;
-            background-color: #a190d5;
-            font-size: 13pt;
-        }
-
-        .question_eslhelper:active {
-            width: 89%;
-            height: 89%;
-            background-color: #7860b4;
-            font-size: 11pt;
-            transition: width 0.3s, height 0.3s, background-color 0.3s, font-size 0.3s;
-        }
-
-        .choicesbox_eslhelper {
-            width: 90%;
-            height: 80%;
-            margin: 10px auto;
-            display: grid;
-            grid-template-columns: auto auto;
-            grid-template-rows: auto auto;
-        }
-
-        .answerfeedback_eslhelper {
-            height: 100%;
-            width: 100%;
-            display: none;
-            position: absolute;
-            top: 0%;
-            align-items: center;
-            justify-content: center;
-            font-size: 30pt;
-            font-family: system-ui;
-        }
-
-        .rightanswer_eslhelper {
-            background-color: lightgreen;
-        }
-
-        .wronganswer_eslhelper {
-            background-color: pink;
-        }
-        .recommendbutton_eslhelper {
-            display: flex;
-            width: 43px;
-            height: 43px;
-            background-color: #8e7cc3;
-            border-radius: 5px;
-            border: #674ea7 2px solid;
-            transition: width 0.5s, height 0.5s, background-color 0.5s, font-size 0.5s;
-            margin: auto;
-        }
-
-        .recommendbutton_eslhelper:hover {
-            width: 44px;
-            height: 44px;
-            background-color: #a190d5;
-        }
-
-        .recommendbutton_eslhelper:active {
-            width: 42px;
-            height: 42px;
-            background-color: #7860b4;
-        }
-
-        .recommendpopup_eslhelper {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-color: #a190d5;
-            border: 2px solid #7860b4;
-            border-radius: 3px;
-            display: none;
-            right: calc(50% - 41px);
-            top: 100%;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
-
-        .rw {
-            position: relative;
-        }
-    </style>
 `
 
 
